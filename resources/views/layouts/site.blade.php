@@ -45,6 +45,8 @@
     "slnt" 0;
     }
   </style>
+
+  @yield('css')
 </head>
 <body>
 

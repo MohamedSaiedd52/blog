@@ -11,9 +11,8 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $posts = Post::take(3)->get();
+        $posts = Post::where('status', '=' , true)->paginate(10);
         return view('layouts.front.theme',compact('posts'));
-
     }
 
 
