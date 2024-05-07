@@ -1,36 +1,71 @@
-<div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-3 ml-auto">
 
-        </div>
-        <div class="col-lg order-lg-center  ">
-          <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-            <li class="nav-item">
-              <a href="{{ route('dashboard.index') }}" class="nav-link"><i class="fe fe-home"></i> الرئيسية</a>
+  <div class="deznav">
+    <div class="deznav-scroll">
+        <ul class="metismenu" id="menu">
+
+
+                <li><a href="{{ route('dashboard.index') }}" class="has-arrow ai-icon" aria-expanded="false">
+                    <i class="flaticon-381-networking"></i>
+
+                    <span class="nav-text">الرئيسية</span>
+                </a>
             </li>
-            <li class="nav-item">
-              <a href="javascript:void(1)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> المقالات</a>
-              <div class="dropdown-menu dropdown-menu-arrow">
-                <a href="{{ route('posts.create') }}" class="dropdown-item ">  اضافه مقاله</a>
-                <a href="{{ route('posts.index') }}" class="dropdown-item ">   كل المقالات</a>
-              </div>
+
+
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-notepad"></i>
+                    <span class="nav-text">المقالات</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('posts.create') }}">اضافه مقالة</a></li>
+                    <li><a href="{{ route('posts.index') }}"> كل المقالات</a></li>
+                </ul>
             </li>
-            <li class="nav-item dropdown">
-              <a href="javascript:void(1)" class="nav-link" data-toggle="dropdown"><i class="fe fe-calendar"></i> الفئات</a>
-              <div class="dropdown-menu dropdown-menu-arrow">
-                <a href="{{route('categories.index') }}" class="dropdown-item ">   كل الفئات</a>
-              </div>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-controls-3"></i>
+                    <span class="nav-text">الفئات</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{route('categories.index') }}"> عرض الفئات</a></li>
+                    <li><a href="{{route('tags.index') }}"> عرض التصنيف</a></li>
+
+
+                </ul>
             </li>
-            <li class="nav-item dropdown">
-              <a href="javascript:void(1)" class="nav-link" data-toggle="dropdown"><i class="fe fe-user"></i> المستخدمين</a>
-              <div class="dropdown-menu dropdown-menu-arrow">
-                <a href="{{ route('Showuser') }}" class="dropdown-item">   كل المستخدمين</a>
-                <a href="{{ route('Adduser') }}" class="dropdown-item ">  اضافه مستخدم</a>
-              </div>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-network"></i>
+                    <span class="nav-text">المستخدمين</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li>                    <a href="{{ route('Showuser') }}" >   كل المستخدمين</a>
+                    </li>
+                    <li> <a href="{{ route('Adduser') }}" >  اضافه مستخدم</a></li>
+
+
+                </ul>
             </li>
-          </ul>
-        </div>
-      </div>
+
+            {{-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-layer-1"></i>
+                    <span class="nav-text">Pages</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="page-register.html">Register</a></li>
+                    <li><a href="page-login.html">Login</a></li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
+                        <ul aria-expanded="false">
+                            <li><a href="page-error-400.html">Error 400</a></li>
+                            <li><a href="page-error-403.html">Error 403</a></li>
+                            <li><a href="page-error-404.html">Error 404</a></li>
+                            <li><a href="page-error-500.html">Error 500</a></li>
+                            <li><a href="page-error-503.html">Error 503</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="page-lock-screen.html">Lock Screen</a></li>
+                </ul>
+            </li> --}}
+        </ul>
+
+
     </div>
-  </div>
+</div>

@@ -1,43 +1,50 @@
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta http-equiv="Content-Language" content="en" />
-<meta name="msapplication-TileColor" content="#2d89ef">
-<meta name="theme-color" content="#4188c9">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
+ <!-- Title -->
+ <title>@yield('title')  </title>
 
+ <!-- Meta -->
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="author" content="DexignZone">
+ <meta name="robots" content="">
+ <meta name="keywords" content="job portal, admin dashboard, Bootstrap HTML template, job listings, applicants, user-friendly interface, powerful functionalities">
+ <meta name="description" content="Qerza is a versatile job portal admin dashboard powered by Bootstrap HTML. Streamline job listings, applicants, and enhance your recruitment process. User-friendly interface with powerful functionalities. Job portal, admin dashboard, Bootstrap HTML template.">
+ <meta property="og:title" content="Qerza - Job Portal Admin Dashboard | Bootstrap HTML Template">
+ <meta property="og:description" content="Qerza is a versatile job portal admin dashboard powered by Bootstrap HTML. Streamline job listings, applicants, and enhance your recruitment process. User-friendly interface with powerful functionalities. Job portal, admin dashboard, Bootstrap HTML template.">
+ <meta property="og:image" content="https://qerza.dexignzone.com/xhtml/social-image.png">
+ <meta name="format-detection" content="telephone=no">
 
+ <!-- Mobile Specific -->
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Mobile Specific -->
 
-<link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon"/>
-<link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+	<!-- Favicon icon -->
+    <!-- Datatable -->
+    <link href="{{ url('/') }}/assets/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link href="{{ url('/') }}/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+ <!-- Favicon icon -->
+ <link rel="icon" type="image/png" href="{{ url('/') }}/assets/images/favicon.png">
+ <link href="{{ url('/') }}/assets/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
+ <link rel="stylesheet" href="{{ url('/') }}/assets/./vendor/chartist/css/chartist.min.css">
+ <link href="{{ url('/') }}/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+ <link href="{{ url('/') }}/assets/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
+ <link href="{{ url('/') }}/assets/css/style.css" rel="stylesheet">
 
+ <link rel="preconnect" href="{{ url('/') }}/assets/https://fonts.googleapis.com">
+ <link rel="preconnect" href="{{ url('/') }}/assets/https://fonts.gstatic.com" crossorigin>
+ <link href="{{ url('/') }}/assets/https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+  {{-- End CSS  --}}
+<style>
+  * {
 
-<title>@yield('title') Dashboard </title>
+font-family: "Cairo", sans-serif;
+font-optical-sizing: auto;
+font-weight: <weight>;
+font-style: normal;
+font-variation-settings:
+  "slnt" 0;
+margin: 0;      /* يزيل الهوامش الافتراضية */
+padding: 0;     /* يزيل الحشو الافتراضي */
+  }
 
-
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
-<script src="{{asseT('assets/js/require.min.js')}}"></script>
-<script>
-  requirejs.config({
-      baseUrl: '.'
-  });
-</script>
-<!-- Dashboard Core -->
-<link href="{{asset('assets/css/dashboard.rtl.css')}}" rel="stylesheet" />
-<script src="{{asset('assets/js/dashboard.js')}}"></script>
-<!-- c3.js Charts Plugin -->
-<link href="{{asset('assets/plugins/charts-c3/plugin.css')}}" rel="stylesheet" />
-<script src="{{asset('assets/plugins/charts-c3/plugin.js')}}"></script>
-<!-- Google Maps Plugin -->
-<link href="{{asset('assets/plugins/maps-google/plugin.css')}}" rel="stylesheet" />
-<script src="{{asset('assets/plugins/maps-google/plugin.js')}}"></script>
-<!-- Input Mask Plugin -->
-<script src="{{asset('assets/plugins/input-mask/plugin.js')}}"></script>
-
+</style>

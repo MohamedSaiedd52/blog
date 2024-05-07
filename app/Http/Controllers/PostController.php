@@ -32,7 +32,8 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'file' => 'required|image|mimes:png,jpeg,jpg',
+            'file' => 'required|image',
+
             'slug' => 'nullable|string|unique:posts|max:255',
             'description' => 'nullable|string|max:10000',
             'status' => 'required|integer',
@@ -88,7 +89,8 @@ class PostController extends Controller
 
          $request->validate([
             'title' => 'required|string|max:255',
-            'file' => 'required|image|mimes:png,jpeg,jpg',
+            'file' => 'required|image',
+
             'slug' => 'nullable|string|unique:posts,slug,' . $id . ',id|max:255',  // Correcting the unique rule
             'description' => 'nullable|string',
             'status' => 'required|integer',

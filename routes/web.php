@@ -6,6 +6,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ Route::middleware('auth')->group(function () {
 
 
 
+
     Route::get('/users',[UserController::class,'Showuser'])->name('Showuser');
     Route::get('/users/add',[UserController::class,'Adduser'])->name('Adduser');
     Route::post('/users/store',[UserController::class,'Saveuser'])->name('Saveuser');
@@ -32,6 +34,8 @@ Route::middleware('auth')->group(function () {
 
 
    Route::resource('categories', CategoryController::class);
+   Route::resource('tags', TagController::class);
+
    Route::resource('posts', PostController::class);
 
 

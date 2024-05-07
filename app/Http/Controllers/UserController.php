@@ -54,7 +54,7 @@ class UserController extends Controller
 
         // return dd($request->all());
         // Redirect to the show user page with success message
-        return redirect()->route('Showuser')->with('success', 'تم إنشاء المستخدم بنجاح. تم إرسال رسالة التحقق عبر البريد الإلكتروني.');
+        return redirect()->route('Showuser')->with('success', ' إنشاء المستخدم بنجاح');
     }
 
 

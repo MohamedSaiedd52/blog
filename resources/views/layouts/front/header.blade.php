@@ -1,54 +1,41 @@
-<header class="navigation bg-black">
-
-	<nav class="navbar navbar-expand-lg  py-4" id="navbar">
-		<div class="container">
-		  <a class="navbar-brand" href="{{url('/')}}">
-		  	Mega<span>kit.</span>
-		  </a>
-
-		  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="fa fa-bars"></span>
-		  </button>
-
-		  <div class="collapse navbar-collapse text-center" id="navbarsExample09">
-			<ul class="navbar-nav ml-auto">
-			  <li class="nav-item active">
-				<a class="nav-link" href="{{url('/')}}  ">Home <span class="sr-only">(current)</span></a>
-			  </li>
-			  {{-- <li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="{{url('/')}}/#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdown03">
-						<li><a class="dropdown-item" href="{{url('/')}}/about.html">Our company</a></li>
-						<li><a class="dropdown-item" href="{{url('/')}}/pricing.html">Pricing</a></li>
-					</ul>
-			  </li> --}}
-			   <li class="nav-item"><a class="nav-link" href="{{ route('service') }}">Services</a></li>
-
-			   <li class="nav-item"><a class="nav-link" href="{{ route('Blogs') }}">Blogs</a></li>
-
-			   {{-- <li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="{{url('/')}}/#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdown05">
-						<li><a class="dropdown-item" href="{{url('/')}}/blog-grid.html">Blog Grid</a></li>
-
-						<li><a class="dropdown-item" href="{{url('/')}}/blog-single.html">Blog Single</a></li>
-					</ul>
-			  </li> --}}
-			   <li class="nav-item"><a class="nav-link" href="{{route('content')}}">Contact</a></li>
-			</ul>
-            <form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
-                @auth
-                    <a href="{{ route('dashboard.index') }}" class="btn btn-solid-border btn-round-full">Dashboard</a>
-                @else
-                    <a href="{{ route('login') }}" class="btn btn-solid-border btn-round-full">Login</a>
-                @endauth
-            </form>
-
-		  </div>
-		</div>
-	</nav>
 
 
 
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close">
+        <span class="icofont-close js-menu-toggle"></span>
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+  </div>
+  <nav class="site-nav">
+    <div class="container">
+        <div class="menu-bg-wrap">
+            <div class="site-navigation">
+                <div class="row g-0 align-items-center">
+                    <div class="col-2">
+                        <a href="{{ route('blog') }}" class="btn btn-primary btn-lg" style="font-size: 20px !important;">مدونتي</a>
+                    </div>
+                    <div class="col-8 text-center">
+                        <!-- Navigation links -->
+                        <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu mx-auto">
+                            <li><a href="{{ route('blog') }}" class="btn">الرئيسية</a></li>
+                            <li><a href="{{ route('service') }}" class="btn">خدماتنا</a></li>
+                            <li><a href="{{ route('content') }}" class="btn">تواصل معنا</a></li>
 
-</header>
+                        </ul>
+                    </div>
+                    <div class="col-2 text-end">
+                        @auth
+                        <span><a href="{{ route('dashboard.index') }}" class="btn btn-primary border-t-0">لوحة التحكم</a></span>
+                        @else
+                        <span><a href="{{ route('login') }}" class="btn btn-primary">تسجيل الدخول</a></span>
+                        @endauth
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</nav>

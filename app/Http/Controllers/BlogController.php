@@ -12,7 +12,7 @@ class BlogController extends Controller
     public function index()
     {
         $posts = Post::take(3)->get();
-        return view('layouts.front.theme', compact('posts'));
+        return view('layouts.front.theme',compact('posts'));
 
     }
 

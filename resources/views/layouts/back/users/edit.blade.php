@@ -11,9 +11,14 @@
     </style>
 
     @endsection
-@section('page-title')
- تعديل المتسخدم
-@endsection
+    @section('title')
+    المستخدمين
+    @endsection
+
+       @section('intitle')
+       <li class="breadcrumb-item"><a href="{{route('Showuser')}}">المستخدمين</a></li>
+       <li class="breadcrumb-item active"><a href="javascript:void(0)">تعديل مستخدم</a></li>
+    @endsection
 @section('content')
 
 
@@ -85,21 +90,16 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="mb-3">
-                <label for="img_file" class="form-label">صورة الملف الشخصي</label>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="img_file" id="img_file" accept=".png, .jpeg, .jpg" aria-describedby="fileInputHelp" onchange="previewFile();">
-                    <label class="custom-file-label" for="img_file">اختر الصورة</label>
-                    <small id="fileInputHelp" class="form-text text-muted">الصيغ المسموح بها للصور هي PNG و JPEG.</small>
+
+         <div class="mb-3">
+            صوره الملف الشخصي
+            <div class="custom-file" style="position: relative;">
+                <input type="file" class="custom-file-input form-control form-control-sm" name="img_file" id="img_file" accept=".png, .jpeg, .jpg" aria-describedby="fileInputHelp">
+                <div id="trashIcon" onclick="removeImage()" style="position: absolute; top: 0; left: 0; padding: 0.5rem;">
+                    <i class="fas fa-trash"></i>
                 </div>
-                <!-- Image Preview Container -->
-                <div class="mt-2">
-                    <img id="previewImage" src="{{ !empty($users->img_file) ? asset('uploads/' . $users->img_file) : '' }}" alt="User Image" style="width: 100px; height: 100px;">
-                </div>
-                @error('img_file')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
             </div>
+        </div>
 
 
                 <div class="text-center mt-4">
@@ -114,31 +114,12 @@
 @endsection
 @section('scripts')
 
-
 <script>
-    // Add the following code if you want the name of the file appear on select
-    $(".custom-file-input").on("change", function() {
-      var fileName = $(this).val().split("\\").pop();
-      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-    });
-
-    function previewFile() {
-    var file = document.getElementById("img_file").files[0];
-    var preview = document.getElementById("previewImage");
-    var reader = new FileReader();
-
-    reader.onloadend = function () {
-        preview.src = reader.result;
-    };
-
-    if (file) {
-        reader.readAsDataURL(file);
-        preview.style.display = 'block';  // Make sure the preview is visible
-    } else {
-        preview.src = "";  // If no file is selected, remove the preview
+    function removeImage() {
+        // Clear the file input
+        document.getElementById("img_file").value = '';
     }
-}
+</script>
 
-    </script>
 
 @endsection

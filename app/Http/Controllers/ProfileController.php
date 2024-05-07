@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,16 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+
+
+
+    // public function index(Request $request)
+    // {
+    //     $users = User::all();
+    //     return view('profile.index',compact('users'));
+    // }
+
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -24,6 +35,29 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
+
+
+
+//    public function update(Request $request,$id)
+//    {
+//      $request->validate([
+//          'name' => 'required',
+//      ]);
+
+//      $tags = Tag::where('id',$id)->update([
+//          'name' => $request->name,
+//      ]);
+//      return redirect()->route('tags.index')->with('success', 'تم التعديل التنصيف بنجاح.     ');
+
+
+//    }
+
+//    public function destroy($id)
+//    {
+//      $tags = Tag::where('id',$id)->delete();
+//      return redirect()->route('tags.index')->with('success', 'تم   حذف التصنيف بنجاح.     ');
+
+//    }
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
@@ -34,7 +68,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.index')->with('status', 'profile-updated');
     }
 
     /**
@@ -57,5 +91,5 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
-    
+
 }

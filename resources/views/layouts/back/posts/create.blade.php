@@ -1,6 +1,8 @@
 @extends('layouts.master')
 @section('css')
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{asset('assets/vendor/select2/css/select2.min.css')}}">
 
 
 <style>
@@ -48,21 +50,29 @@
                 visibility: visible;
                 opacity: 1;
             }
-    </style>
+
+            .chosen-container-multi .chosen-choices li.search-choice {
+                float: right !important;
+            }
+    .custom-file-input {
+        cursor: pointer;
+    }
+    .custom-file-label::after {
+        content: "اختر ملف";
+    }
+</style>
 
    @endsection
-@section('page-title')
-اضافه مقالة
+   @section('title')
+   المقالات
+   @endsection
 
-<label class="custom-tooltip" style="font-size:16px !important;">
-
-                        <i class="fa fa-info-circle"></i> <!-- Font Awesome icon -->
-                            {{-- كل الحقول مطلوبه ما عدا حقل تاكيد بريد --}}
-                    </label>
-@endsection
+      @section('intitle')
+      <li class="breadcrumb-item"><a href="{{route('posts.index')}}">المقالات</a></li>
+      <li class="breadcrumb-item active"><a href="javascript:void(0)"> اضافة المقالات</a></li>
+   @endsection
 @section('content')
 
-<div class="container ">
 
     <div class="card">
         <div class="card-body">
@@ -81,26 +91,30 @@
 
     <div class="mb-3">
         <h4>
-            <label for="slug">seo - slug </label>
+            <label for="slug"> slug </label>
 
         </h4>
         <input type="text" name="slug" id="slug"  class="form-control"/>
     </div>
 
+
+
+
     <div class="mb-3">
-        <h4>
-            <label for="file">اختر صورة </label>
-
-        </h4>
-        <input type="file" name="file" id="file"  class="form-control" />
+        صوره  المقالة
+        <div class="custom-file" style="position: relative;">
+            <input type="file" class="custom-file-input form-control form-control-sm" name="file" id="file"  aria-describedby="fileInputHelp">
+            <div id="trashIcon" onclick="removeImage()" style="position: absolute; top: 0; left: 0; padding: 0.5rem;">
+                <i class="fas fa-trash"></i>
+            </div>
+        </div>
     </div>
-
 
     <div class="mb-3">
 
         <h4>  التصنيف </h4>
-        <select name="category_id" id="category_id" class="form-control">
-            <option value=""  disabled>اختر تصنيف المقالة  </option>
+        <select name="category_id"  id="single-select" class="form-control default-select">
+            {{-- <option value=""  disabled>اختر تصنيف المقالة  </option> --}}
 
            @foreach ($category as $value)
                 <option value="{{$value->id}}">{{$value->name}}</option>
@@ -110,24 +124,31 @@
         </select>
     </div>
 
-
     <div class="mb-3">
-        <h4>
-            الوصف
-        </h4>
-        <textarea id="description" name="description" ></textarea>
 
+        <h4>  الوصف </h4>
+
+            <div class="card-body custom-ekeditor">
+                <div id="ckeditor" name="description" ></div>
+            </div>
 
     </div>
+
+
+
+
+
+
     <div class="mb-3">
         <h4>Tags</h4>
-        <!-- Corrected name attribute to 'tags[]' for array data handling -->
-        <select name="tags[]" class="form-control selectpicker" multiple data-live-search="true" title="اختر">
+        <select class="multi-select form-control" name="tags[]" multiple="multiple"  id="tags">
             @foreach ($tags as $tag)
-                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-            @endforeach
+            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+        @endforeach
         </select>
+
     </div>
+
 
 
 
@@ -135,16 +156,13 @@
         <h4>
             الحالة
         </h4>
-        <select name="status" id="status" class="form-control">
+        <select name="status" id="single-select" class="form-control">
             <option value="" >اختر حالة المقالة</option>
             <option  value="1" >نشطة</option>
             <option  value="0" >غير نشطة</option>
-
-
         </select>
 
     </div>
-
 
 
 
@@ -159,9 +177,14 @@
             </form>
         </div>
     </div>
-</div>
 @endsection
 @section('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- ck editor -->
+	<script src="{{asset('assets/vendor/ckeditor/ckeditor.js')}}"></script>
+<script src="{{asset('assets/vendor/select2/js/select2.full.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins-init/select2-init.js')}}"></script>
 
 
 
@@ -171,6 +194,15 @@
       selector: '#description'
     });
   </script>
+
+
+
+<script>
+    function removeImage() {
+        // Clear the file input
+        document.getElementById("img_file").value = '';
+    }
+</script>
 @endsection
 
 

@@ -51,18 +51,16 @@
     </style>
 
    @endsection
-@section('page-title')
-اضافه مستخدم
+@section('title')
+المستخدمين
+@endsection
 
-<label class="custom-tooltip" style="font-size:16px !important;">
-
-                        <i class="fa fa-info-circle"></i> <!-- Font Awesome icon -->
-                            {{-- كل الحقول مطلوبه ما عدا حقل تاكيد بريد --}}
-                    </label>
+   @section('intitle')
+   <li class="breadcrumb-item"><a href="{{route('Showuser')}}">المستخدمين</a></li>
+   <li class="breadcrumb-item active"><a href="javascript:void(0)">اضافة مستخدم</a></li>
 @endsection
 @section('content')
 
-<div class="container ">
 
     <div class="card">
         <div class="card-body">
@@ -215,26 +213,22 @@
                 <div class="text-danger">{{ $message }}</div>
             @enderror
          </div>
-         
-         <div class="mb-3">
-            <label class="custom-tooltip">
-                صوره الملف الشخصي
-                <i class="fa fa-info-circle"></i> <!-- Font Awesome icon -->
-                <span class="tooltiptext" style="display: inline; white-space: wrap;">
-                    الصيغات المسموح بها للصور هي PNG و JPEG.
-                </span>
-            </label>
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" name="img_file" id="img_file" accept=".png, .jpeg, .jpg" aria-describedby="fileInputHelp" onchange="previewImage();">
-                <label class="custom-file-label" for="img_file">اختر الصورة</label>
-                <img id="imagePreview" src="#" alt="Image Preview" style="display: none;max-width:50px !important;" class="img-fluid mt-2 rounded" />
 
-                <small id="fileInputHelp" class="form-text text-muted">Only PNG and JPEG files are allowed.</small>
-                @error('img_file')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
+
+
+         <div class="mb-3">
+            صوره الملف الشخصي
+            <div class="custom-file" style="position: relative;">
+                <input type="file" class="custom-file-input form-control form-control-sm" name="img_file" id="img_file" accept=".png, .jpeg, .jpg" aria-describedby="fileInputHelp">
+                <div id="trashIcon" onclick="removeImage()" style="position: absolute; top: 0; left: 0; padding: 0.5rem;">
+                    <i class="fas fa-trash"></i>
+                </div>
             </div>
         </div>
+
+
+
+
 
 
 
@@ -248,33 +242,18 @@
             </form>
         </div>
     </div>
-</div>
 @endsection
 @section('scripts')
 
 
+
+
 <script>
-    // Add the following code if you want the name of the file appear on select
-    $(".custom-file-input").on("change", function() {
-      var fileName = $(this).val().split("\\").pop();
-      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-    });
-
-    function previewImage() {
-    var file = document.getElementById("img_file").files;
-    if (file.length > 0) {
-        var fileReader = new FileReader();
-
-        fileReader.onload = function (event) {
-            document.getElementById("imagePreview").setAttribute("src", event.target.result);
-            document.getElementById("imagePreview").style.display = "block";
-        };
-
-        fileReader.readAsDataURL(file[0]);
+    function removeImage() {
+        // Clear the file input
+        document.getElementById("img_file").value = '';
     }
-}
-
-    </script>
+</script>
 
 @endsection
 

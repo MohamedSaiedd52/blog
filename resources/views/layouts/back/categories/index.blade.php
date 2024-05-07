@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
-
+@section('title')
+الفئات
+@endsection
 @section('content')
 
 
@@ -8,27 +10,28 @@
 
 
 
-            @section('page-title')
-                       المدونه / الفئات
+
+   @section('intitle')
+   <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">الرئيسية</a></li>
+   <li class="breadcrumb-item active"><a href="javascript:void(0)"> كل الفئات</a></li>
 @endsection
 
 
 
-
-<button type="button" class="btn btn-success add-btn mt-4 mb-4 rounded" data-toggle="modal" id="create-btn" data-target="#showModal"><i class="ri-add-line align-bottom me-1 " ></i> اضافه</button>
+<button type="button" class="btn btn-success add-btn mt-4 mb-4 rounded" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1 " ></i> اضافه</button>
 
 
 
                         <table class="table table-bordered table-striped" id="customerTable" style="width: 100% !important;">
-                            <thead class="table-light">
+                            <thead >
                                 <tr>
 
 
-                                    <th class="sort" data-sort="sn">#</th>
+                                    <th >#</th>
 
-                                    <th class="sort" data-sort="Username">اسم الفئة</th>
+                                    <th >اسم الفئة</th>
 
-                                    <th class="sort" data-sort="action">العمليات</th>
+                                    <th >العمليات</th>
                                 </tr>
                             </thead>
 
@@ -47,11 +50,11 @@
                                     <td>
                                         <div class="d-flex gap-2 ml-4">
                                             <div class="edit mr-2">
-                                                <button class="btn btn-sm btn-success edit-item-btn" data-toggle="modal" data-target="#editshowModal{{ $cat->id }}">تعديل</button>
+                                                <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#editshowModal{{ $cat->id }}">تعديل</button>
                                             </div>
 
                                                 <div class="remove">
-                                                    <button class="btn btn-sm btn-danger remove-item-btn" data-toggle="modal" data-target="#deleteRecordModal{{$cat->id}}">حذف</button>
+                                                    <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal{{$cat->id}}">حذف</button>
                                                 </div>
 
 
@@ -69,8 +72,7 @@
         <div class="modal-content">
             <div class="modal-header bg-light p-3">
                 <h5 class="modal-title" id="exampleModalLabel"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                </button>
+
             </div>
             <form class="tablelist-form" autocomplete="off" method="POST" action="{{route('categories.update',$cat->id)}}">
                 @csrf
@@ -89,7 +91,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="hstack gap-2 justify-content-end">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">اغلاق</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">اغلاق</button>
                      <button type="submit" class="btn btn-success" >نحديث</button>
                     </div>
                 </div>
@@ -107,8 +109,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                </button>
+
             </div>
             <form  action="{{ route('categories.destroy', $cat->id) }}" method="POST">
                 @csrf
@@ -122,7 +123,7 @@
                         </div>
                     </div>
                     <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
-                        <button type="button" class="btn w-sm btn-light" data-dismiss="modal">اغلاق</button>
+                        <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">اغلاق</button>
                         <button type="submit" class="btn w-sm btn-danger" >نعم، احذفها!</button>
                     </div>
                 </div>
@@ -175,8 +176,7 @@
         <div class="modal-content">
             <div class="modal-header bg-light p-3">
                 <h5 class="modal-title" id="exampleModalLabel">اضافه فئة</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                </button>
+
             </div>
             <form class="tablelist-form" autocomplete="off" method="POST" action="{{route('categories.store')}}">
 @csrf
@@ -194,7 +194,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="hstack gap-2 justify-content-end">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">اغلاق</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">اغلاق</button>
                         <button type="submit" class="btn btn-success" id="add-btn"> اضافه مستخدم</button>
                     </div>
                 </div>
