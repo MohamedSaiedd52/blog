@@ -76,6 +76,20 @@ class CommentController extends Controller
 
         return redirect()->back()->with('success', 'CommentReply successfully created. Please wait for admin approval.');
     }
+    public function destroy($id)
+    {
+        // Retrieve the comment by its ID
+        $comment = Comment::findOrFail($id);
+
+        // Delete all associated comment replies
+        $comment->replies()->delete();
+
+        // Delete the comment
+        $comment->delete();
+
+        return redirect()->back()->with('success', 'CommentReply successfully Delete. ');
+
+    }
 
 
 }

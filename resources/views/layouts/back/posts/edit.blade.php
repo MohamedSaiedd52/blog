@@ -80,6 +80,7 @@
 
     <div class="card">
         <div class="card-body">
+            @include('layouts.back.message')
 
             <form action="{{route('posts.update',$post->id)}}" method="POST"  enctype="multipart/form-data">
                 @csrf
@@ -111,21 +112,17 @@
         </div>
     </div>
 
-
-
-        <div class="mb-3">
-
-            <h4>  التصنيف </h4>
-            <select name="category_id" id="category_id" class="form-control" id="single-select" >
-                <option value=""  disabled>اختر تصنيف المقالة  </option>
-
+    <div class="mb-3">
+        <h4>التصنيف</h4>
+        <select name="category_id" id="category_id" class="form-control" id="single-select">
+            <option value="" disabled>اختر تصنيف المقالة</option>
             @foreach ($category as $value)
-                    <option value="{{$value->id}}">{{$value->name}}</option>
+                <option value="{{ $value->id }}" {{ $value->id == $post->category_id ? 'selected' : '' }}>
+                    {{ $value->name }}
+                </option>
             @endforeach
-
-            </select>
-        </div>
-
+        </select>
+    </div>
 
 
 
@@ -145,10 +142,18 @@
 
         <h4>  الوصف </h4>
 
-            <div class="card-body custom-ekeditor">
-                <div id="ckeditor" name="description" >{{ strip_tags(old('description', $post->description) )}}</div>
-            </div>
+            {{-- <div class="card-body custom-ekeditor">
+                <div id="ckeditor" name="description" ></div>
+            </div> --}}
+            {{-- <div name="" >
 
+            </div> --}}
+
+
+            <textarea name="description" id="ckeditor" class="form-control" cols="10" rows="5">
+
+                {{ strip_tags(old('description', $post->description) )}}
+            </textarea>
     </div>
 
 
@@ -200,11 +205,7 @@
         document.getElementById("img_file").value = '';
     }
 </script>
-<script>
-    tinymce.init({
-      selector: '#description'
-    });
-  </script>
+
 
 @endsection
 

@@ -37,7 +37,7 @@
                             <span class="d-inline-block mt-1">By <a href="#"> {{ $post->user->name }}</a></span>
                             <span>&nbsp;-&nbsp; {{ $post->created_at->format("Y-m-d") }}</span>
                         </div>
-                        <p>{!! substr(strip_tags($post->description), 0, 300) !!}</p>
+                        <p style="word-wrap: break-word !important;">{!! substr(strip_tags($post->description), 0, 200) !!}</p>
                         <p><a href="{{ route('single_blog', $post->slug) }}" class="read-more">متابعة القراءة</a></p>
                     </div>
                 </div>

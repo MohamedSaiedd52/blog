@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Tag;
@@ -37,6 +38,7 @@ class BlogController extends Controller
     {
         $posts = Post::latest()->limit(5)->get();
         $post = Post::where('slug', $slug)->firstOrFail();
+
 
         $tags = Tag::all();
         $comments = Comment::where('post_id',$post->id)->get();

@@ -70,7 +70,7 @@
       </div>
     </div>
 
-
+@yield('scripts')
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('js/tiny-slider.js')}}"></script>
 

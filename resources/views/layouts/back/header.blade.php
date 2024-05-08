@@ -155,11 +155,12 @@
                                 <span class="text-black"><strong>{{ Auth::user()->name }}</strong></span>
                                 <p class="fs-12 mb-0">{{ Auth::user()->email }}</p>
                             </div>
+
                             @if (!empty(Auth::user()->img_file))
                             <img src="{{ asset('uploads/' . Auth::user()->img_file) }}" alt="User Image" class="avatar"  width="20">
                         @else
                             <!-- توفير صورة افتراضية في حال عدم وجود صورة -->
-                            <img src="{{ asset('path/to/default-avatar.png') }}" alt="No img" class="avatar">
+                            <img src="{{ asset('admin/img/avatar.jpg') }}" alt="No img" class="avatar">
                         @endif
                         </a>
                         <div class="dropdown-menu dropdown-menu-start">

@@ -76,6 +76,7 @@
 
     <div class="card">
         <div class="card-body">
+            @include('layouts.back.message')
 
             <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data" >
                 @csrf
@@ -128,9 +129,10 @@
 
         <h4>  الوصف </h4>
 
-            <div class="card-body custom-ekeditor">
-                <div id="ckeditor" name="description" ></div>
-            </div>
+
+        <textarea name="description" id="ckeditor" class="form-control" style="resize: none !important;">
+
+        </textarea>
 
     </div>
 
@@ -189,11 +191,6 @@
 
 
 
-<script>
-    tinymce.init({
-      selector: '#description'
-    });
-  </script>
 
 
 

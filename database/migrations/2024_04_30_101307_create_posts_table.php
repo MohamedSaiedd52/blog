@@ -21,13 +21,13 @@ return new class extends Migration
             $table->tinyInteger('status')->default(0);
             // Define the user_id column before setting it as a foreign key
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             // Define the category_id column before setting it as a foreign key
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
             $table->unsignedBigInteger('gallery_id');
-            $table->foreign('gallery_id')->references('id')->on('galleries');
+            $table->foreign('gallery_id')->references('id')->on('galleries')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -1,90 +1,67 @@
 @extends('layouts.site')
 
 @section('content')
-<div class="main-wrapper ">
-<section class="page-title bg-1">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="block text-center">
-          <span class="text-white">Contact Us</span>
-          <h1 class="text-capitalize mb-4 text-lg">Get in Touch</h1>
-          <ul class="list-inline">
-            <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
-            <li class="list-inline-item"><span class="text-white">/</span></li>
-            <li class="list-inline-item"><a href="#" class="text-white-50">Contact Us</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- contact form start -->
-<section class="contact-form-wrap section">
+
+<div class="section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                 <form id="contact-form" class="contact__form" method="post" action="mail.php">
-                 <!-- form message -->
+            <div class="col-lg-4 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
+                <div class="contact-info">
+
+                    <div class="address mt-2">
+                        <i class="icon-room"></i>
+                        <h4 class="mb-2">Location:</h4>
+                        <p>43 Raymouth Rd. Baltemoer,<br> London 3910</p>
+                    </div>
+
+                    <div class="open-hours mt-4">
+                        <i class="icon-clock-o"></i>
+                        <h4 class="mb-2">Open Hours:</h4>
+                        <p>
+                            Sunday-Friday:<br>
+                            11:00 AM - 2300 PM
+                        </p>
+                    </div>
+
+                    <div class="email mt-4">
+                        <i class="icon-envelope"></i>
+                        <h4 class="mb-2">Email:</h4>
+                        <p>info@Untree.co</p>
+                    </div>
+
+                    <div class="phone mt-4">
+                        <i class="icon-phone"></i>
+                        <h4 class="mb-2">Call:</h4>
+                        <p>+1 1234 55488 55</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+                <form action="#">
                     <div class="row">
+                        <div class="col-6 mb-3">
+                            <input type="text" class="form-control" placeholder="Your Name">
+                        </div>
+                        <div class="col-6 mb-3">
+                            <input type="email" class="form-control" placeholder="Your Email">
+                        </div>
+                        <div class="col-12 mb-3">
+                            <input type="text" class="form-control" placeholder="Subject">
+                        </div>
+                        <div class="col-12 mb-3">
+                            <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                        </div>
+
                         <div class="col-12">
-                            <div class="alert alert-success contact__msg" style="display: none" role="alert">
-                                Your message was sent successfully.
-                            </div>
+                            <input type="submit" value="Send Message" class="btn btn-primary">
                         </div>
                     </div>
-                    <!-- end message -->
-                    <span class="text-color">Send a message</span>
-                    <h3 class="text-md mb-4">Contact Form</h3>
-                    <div class="form-group">
-                        <input name="name" type="text" class="form-control" placeholder="Your Name">
-                    </div>
-                    <div class="form-group">
-                        <input name="email" type="email" class="form-control" placeholder="Email Address">
-                    </div>
-                    <div class="form-group-2 mb-4">
-                        <textarea name="message" class="form-control" rows="4" placeholder="Your Message"></textarea>
-                    </div>
-                    <button class="btn btn-main" name="submit" type="submit">Send Message</button>
                 </form>
-            </div>
-
-            <div class="col-lg-5 col-sm-12">
-                <div class="contact-content pl-lg-5 mt-5 mt-lg-0">
-                    <span class="text-muted">We are Professionals</span>
-                    <h2 class="mb-5 mt-2">Don’t Hesitate to contact with us for any kind of information</h2>
-
-                    <ul class="address-block list-unstyled">
-                        <li>
-                            <i class="ti-direction mr-3"></i>North Main Street,Brooklyn Australia
-                        </li>
-                        <li>
-                            <i class="ti-email mr-3"></i>Email: contact@mail.com
-                        </li>
-                        <li>
-                            <i class="ti-mobile mr-3"></i>Phone:+88 01672 506 744
-                        </li>
-                    </ul>
-
-                    <ul class="social-icons list-inline mt-5">
-                        <li class="list-inline-item">
-                            <a href="http://www.themefisher.com"><i class="fab fa-facebook-f"></i></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="http://www.themefisher.com"><i class="fab fa-twitter"></i></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="http://www.themefisher.com"><i class="fab fa-linkedin-in"></i></a>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
-</section>
+</div> <!-- /.untree_co-section -->
 
-<div class="google-map">
-    <div id="map"></div>
-</div>
 
 @endsection

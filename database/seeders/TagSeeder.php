@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CategorySeeder extends Seeder
+class TagSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
 
-        $categories = [
+        $tags = [
             'تكنولوجيا',
             'بيزنيس',
             'اقتصاد',
@@ -24,9 +24,9 @@ class CategorySeeder extends Seeder
 
         ];
 
-        foreach ($categories as $category) {
-            Category::factory()->create([
-                'name' => $category
+        foreach ($tags as $tag) {
+            Tag::factory()->create([
+                'name' => $tag
             ]);
         }
 

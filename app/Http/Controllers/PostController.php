@@ -13,7 +13,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(5);
         $category = Category::getCategory();
 
         return view('layouts.back.posts.index',compact('posts','category'));
@@ -33,9 +33,8 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'file' => 'required|image',
-
             'slug' => 'nullable|string|unique:posts|max:255',
-            'description' => 'nullable|string|max:10000',
+            'description' => 'nullable|max:10000',
             'status' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
             'tags' => 'required|array',
@@ -89,10 +88,9 @@ class PostController extends Controller
 
          $request->validate([
             'title' => 'required|string|max:255',
-            'file' => 'required|image',
-
+            'file' => 'nullable|image',
             'slug' => 'nullable|string|unique:posts,slug,' . $id . ',id|max:255',  // Correcting the unique rule
-            'description' => 'nullable|string',
+            'description' => 'nullable|max:10000',
             'status' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
             'tags' => 'required|array',
@@ -147,20 +145,24 @@ class PostController extends Controller
         return redirect()->route('posts.index')->with('success', 'تم تحديث المقالة بنجاح');
     }
 
-    public function destroy($id)
-    {
+        public function destroy($id)
+        {
 
-       // Retrieve the post by its ID
-           $post = Post::findOrFail($id);
+        // Retrieve the post by its ID
+            $post = Post::findOrFail($id);
 
-    // Detach all associated tags
-          $post->tags()->detach();
+        // Detach all associated tags
+            $post->tags()->detach();
 
-    // Delete the post
-          $post->delete();
-        return redirect()->route('posts.index')->with('success', 'تم حذف المقالة بنجاح');
+            $post->comments()->delete();
 
-    }
+
+
+        // Delete the post
+            $post->delete();
+            return redirect()->route('posts.index')->with('success', 'تم حذف المقالة بنجاح');
+
+        }
 
 
     private function uploadfile($file)

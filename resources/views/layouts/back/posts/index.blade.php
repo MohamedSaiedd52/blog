@@ -7,6 +7,7 @@
 
     .dataTables_wrapper .dataTables_paginate {
     text-align: center;
+    display: none !important;
     margin-top: 20px; /* Adjust margin-top as needed */
 }
 
@@ -184,6 +185,10 @@
 @endif
             </tbody>
         </table>
+
+        {{ $posts->links('vendor.pagination.semantic-ui') }}
+
+
     </div>
 </div>
 
