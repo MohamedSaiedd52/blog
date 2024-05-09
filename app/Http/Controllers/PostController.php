@@ -31,7 +31,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|min:60|max:255',
             'file' => 'required|image',
             'slug' => 'nullable|string|unique:posts|max:255',
             'description' => 'nullable|max:10000',
@@ -87,7 +87,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);  // Find the existing post
 
          $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|min:60|max:255',
             'file' => 'nullable|image',
             'slug' => 'nullable|string|unique:posts,slug,' . $id . ',id|max:255',  // Correcting the unique rule
             'description' => 'nullable|max:10000',

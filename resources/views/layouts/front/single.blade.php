@@ -14,10 +14,27 @@
      max-height: 90px; /* Maximum height for uniformity */
      width: auto; /* Ensures the image doesn't exceed the maximum width */
 }
+.badges  {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
 
+.badges-success {
+    color: #ffffff;
+    background-color: #002e5a;
+}
  </style>
 
 @endsection
+
+
 @section('content')
 
 <section class="section">
@@ -34,10 +51,15 @@
 
 
 
+
+
+
+
+
+
 {{-- Start POST  --}}
 
           <div class="post-content-body">
-        @foreach ($posts as $post)
 
             <div class="row my-4">
               <div class="col-md-12 mb-4">
@@ -50,7 +72,6 @@
             <p>      {!! $post->description !!}</p>
 
           </div>
-          @endforeach
 {{-- End POST  --}}
 
 
@@ -67,12 +88,10 @@
 
           <div class="pt-5">
             <p>الفئات:
-                @foreach ($posts as $post)
 
 
-                <a href="#"> {{$post->category->name }}</a>,
+                <a href="#"> {{$post->category->name }}</a>
 
-                @endforeach
             </p>
           </div>
 
@@ -243,26 +262,24 @@
 
           <!-- END sidebar-box -->
 
+
+
           <div class="sidebar-box">
             <h3 class="heading">الفئات</h3>
-            <ul class="categories">
-
-                @foreach ($posts as $post)
-                        <li>
-                            {{$post->category->name }}   <span></span>
-                        </li>
-                @endforeach
-
+            <ul class="categories a">
+                @foreach ($cats as $cat)
+              <li><a href="{{ route('single_blog', $post->slug) }}">{{ $cat->name }} <span>{{ $cat->posts->count() }}</span></a></li>
+              @endforeach
             </ul>
           </div>
           <!-- END sidebar-box -->
 
           <div class="sidebar-box">
             <h3 class="heading">التاجات</h3>
-            @if($post->tags()->count() > 0)
-                        @foreach($post->tags as $tag)
+            @if($tags->count() > 0)
+                        @foreach($tags as $tag)
               <ul class="tags">
-                <li><a href="#">{{ $tag->name }}</a></li>
+                <li><a href="#"> <span class="badges badges-success" >{{ $tag->name }}</span></a></li>
 
               </ul>
                         @endforeach
@@ -310,12 +327,13 @@
 
 
 
-
-
-
 @endsection
+
+
 @section('scripts')
-<script src="{{asset('assets/vendor/ckeditor/ckeditor.js')}}"></script>
+
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
