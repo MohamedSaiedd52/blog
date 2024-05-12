@@ -10,12 +10,18 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+    public function index()
+    {
+        $comments = Comment::all();
+        return view('layouts.back.comments.index', compact('comments'));
+    }
 
     public function postComment(Request $request, $postId)
     {
         // Validate the incoming request data
         $request->validate([
             'comment' => 'required|max:500|string',
+
         ]);
 
         // Check if the user is authenticated
@@ -30,15 +36,17 @@ class CommentController extends Controller
         }
 
         // Create the comment
-        Comment::create([
+       $co =  Comment::create([
             'post_id' => $postId,
             'user_id' => auth()->id(),
             'comment' => $request->comment,
+            'approved' => $request->approved,
         ]);
 
         return redirect()->back()->with('success', 'Comment successfully created. Please wait for admin approval.');
-    }
 
+        // return view('layouts.back.comments.index',compact('co'))->with();
+    }
 
 
 
@@ -83,6 +91,19 @@ class CommentController extends Controller
 
         // Delete all associated comment replies
         $comment->replies()->delete();
+
+        // Delete the comment
+        $comment->delete();
+
+        return redirect()->back()->with('success', 'CommentReply successfully Delete. ');
+
+    }
+    public function Delnot($id)
+    {
+        // Retrieve the comment by its ID
+        $comment = Comment::findOrFail($id);
+
+        // Delete all associated comment replies
 
         // Delete the comment
         $comment->delete();

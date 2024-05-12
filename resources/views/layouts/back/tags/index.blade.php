@@ -17,8 +17,10 @@
 @endsection
 
 
+@can('tag-create')
 
 <button type="button" class="btn btn-success add-btn mt-4 mb-4 rounded" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1 " ></i> اضافه</button>
+@endcan
 
 
 @include('layouts.back.message')
@@ -30,8 +32,11 @@
                                     <th >#</th>
 
                                     <th >اسم التصنيف</th>
+                                  @can('tag-edit,tag-delete')
 
                                     <th >العمليات</th>
+                                  @endcan
+
                                 </tr>
                             </thead>
 
@@ -49,13 +54,18 @@
 
                                     <td>
                                         <div class="d-flex gap-2 ml-4">
+                                            @can('tag-edit')
+
                                             <div class="edit mr-2">
                                                 <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#editshowModal{{ $tag->id }}">تعديل</button>
                                             </div>
+                                            @endcan
+                                            @can('tag-delete')
 
                                                 <div class="remove">
                                                     <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal{{$tag->id}}">حذف</button>
                                                 </div>
+                                                @endcan
 
 
                                         </div>

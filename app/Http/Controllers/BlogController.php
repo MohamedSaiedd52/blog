@@ -38,7 +38,7 @@ class BlogController extends Controller
     {
         $posts = Post::latest()->limit(5)->get();
         $post = Post::where('slug', $slug)->firstOrFail();
-
+        
         $cats = Category::all();
         $tags = Tag::all();
         $comments = Comment::where('post_id',$post->id)->get();

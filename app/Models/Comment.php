@@ -10,11 +10,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Comment extends Model
 {
     use HasFactory;
+    protected $table = 'comment_replies'; // Specify the correct table name
 
     protected $fillable = [
         'user_id',
         'post_id',
-        'comment'
+        'comment',
+        'approved',
     ];
 
 
@@ -27,7 +29,6 @@ class Comment extends Model
     {
         return $this->hasMany(CommentReply::class);
     }
-
 
 
 

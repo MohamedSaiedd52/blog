@@ -1,25 +1,68 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+@extends('layouts.guest')
+@section('css')
+
+<style>
+    *{
+        font-family: "Almarai", sans-serif;
+  font-weight: 700;
+  font-style: normal
+    }
+    .authincation-content {
+
+    margin: 50px auto !important;
+}
+</style>
+@endsection
+@section('content')
+
+
+<div class="authincation h-100">
+    <div class="container h-100">
+        <div class="row justify-content-center h-100 align-items-center">
+            <div class="col-md-6">
+                <div class="authincation-content">
+                    <div class="row no-gutters">
+                        <div class="col-xl-12">
+                            <div class="auth-form">
+
+                                <h4 class="text-center mb-4 text-white">هل نسيت كلمة السر</h4>
+
+                                <div class="mb-4 text-sm text-white">
+                                    {{ __('نسيت كلمة السر؟ لا مشكلة. فقط أخبرنا بعنوان بريدك الإلكتروني وسنرسل إليك عبر البريد الإلكتروني رابط إعادة تعيين كلمة المرور الذي سيسمح لك باختيار كلمة مرور جديدة.') }}
+                                </div>
+                                @if (session('status'))
+    <div class="mb-4 alert alert-info">
+        {{ session('status') }}
     </div>
+@endif
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.email') }}">
+                                <form method="POST" action="{{ route('password.email') }}">
         @csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    <div class="form-group">
+                                        <label class="text-white"><strong>البريد الالكتروني</strong></label>
+                                        <input type="email" class="form-control" name="email">
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn bg-white text-primary btn-block">احفظ</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+
+
+
+
+
+
+
+
+
+@endsection

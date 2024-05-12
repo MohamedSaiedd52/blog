@@ -1,3 +1,10 @@
+@php
+use App\Models\Comment;
+use App\Models\CommentReply;
+
+$comments = Comment::latest()->take(5)->get(); // Fetch latest 5 comments
+@endphp
+
 <div class="nav-header">
     <a href="{{ route('dashboard.index') }}" class="brand-logo">
         <div class="text-center brand" id="brandContainer">
@@ -48,94 +55,80 @@
                         </div>
                     </li> --}}
                     <li class="nav-item dropdown notification_dropdown">
-                        <a class="nav-link bell dz-theme-mode p-0" href="javascript:void(0);">
-                            <i id="icon-light" class="fas fa-sun"></i>
-                            <i id="icon-dark" class="fas fa-moon"></i>
-
-                        </a>
-                    </li>
-                    {{-- <li class="nav-item dropdown notification_dropdown">
-                        <a class="nav-link  ai-icon" href="javascript:void(0)" role="button" data-bs-toggle="dropdown">
+                        <a class="nav-link ai-icon" href="javascript:void(0)" role="button" data-bs-toggle="dropdown">
                             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10.4525 25.6682C11.0606 27.0357 12.4091 28 14.0006 28C15.5922 28 16.9407 27.0357 17.5488 25.6682C16.4266 25.7231 15.2596 25.76 14.0006 25.76C12.7418 25.76 11.5748 25.7231 10.4525 25.6682Z" fill="#3E4954"/>
                                 <path d="M26.3531 19.74C24.8769 17.8785 22.3995 14.2195 22.3995 10.64C22.3995 7.09073 20.1192 3.89758 16.7995 2.72382C16.7592 1.21406 15.5183 0 14.0006 0C12.4819 0 11.2421 1.21406 11.2017 2.72382C7.88095 3.89758 5.60064 7.09073 5.60064 10.64C5.60064 14.2207 3.12434 17.8785 1.64706 19.74C1.15427 20.3616 1.00191 21.1825 1.24051 21.9363C1.47348 22.6721 2.05361 23.2422 2.79282 23.4595C4.08755 23.8415 6.20991 24.2715 9.44676 24.491C10.8479 24.5851 12.3543 24.64 14.0007 24.64C15.646 24.64 17.1524 24.5851 18.5535 24.491C21.7914 24.2715 23.9127 23.8415 25.2085 23.4595C25.9477 23.2422 26.5268 22.6722 26.7597 21.9363C26.9983 21.1825 26.8448 20.3616 26.3531 19.74Z" fill="#3E4954"/>
                             </svg>
-                            <span class="badge light text-white bg-primary">3</span>
+                            <span class="badge light text-white bg-primary">{{ $comments->count() }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-start">
                             <div id="DZ_W_Notification1" class="widget-media dz-scroll p-3 height380">
                                 <ul class="timeline">
+                                    <!-- Show comments -->
+                                    @foreach($comments as $comment)
                                     <li>
                                         <div class="timeline-panel">
                                             <div class="media me-2">
-                                                <img alt="image" width="50" src="images/avatar/1.jpg">
+                                                <img alt="image" width="50" src="{{asset('admin/img/avatar.jpg')}}">
+                                                <form action="{{ route('comments.delete', $comment->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm ms-2" onclick="return confirm('Are you sure you want to delete this comment?')">
+                                                        <i class="ti-trash"></i>
+                                                    </button>
+                                                </form>
                                             </div>
+                                            @auth
+                                                <p>{{ Auth::user()->name }}</p>
+                                            @endauth
                                             <div class="media-body">
-                                                <h6 class="mb-1">Dr sultads Send you Photo</h6>
-                                                <small class="d-block">29 July 2020 - 02:26 PM</small>
+                                                <h6 class="mb-1">تعليق جديد</h6>
+                                                <p>{{ $comment->comment }}</p>
+                                                <small class="d-block">{{ $comment->created_at->format('d M Y - H:i A') }}</small>
+                                                @if($comment->approved)
+                                                    <small class="text-success">Approved</small>
+                                                @else
+                                                    <small class="text-warning">Pending Approval</small>
+                                                @endif
                                             </div>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="timeline-panel">
-                                            <div class="media me-2 media-info">
-                                                KG
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="mb-1">Resport created successfully</h6>
-                                                <small class="d-block">29 July 2020 - 02:26 PM</small>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="timeline-panel">
-                                            <div class="media me-2 media-success">
-                                                <i class="fa fa-home"></i>
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="mb-1">Reminder : Treatment Time!</h6>
-                                                <small class="d-block">29 July 2020 - 02:26 PM</small>
-                                            </div>
-                                        </div>
-                                    </li>
-                                     <li>
-                                        <div class="timeline-panel">
-                                            <div class="media me-2">
-                                                <img alt="image" width="50" src="images/avatar/1.jpg">
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="mb-1">Dr sultads Send you Photo</h6>
-                                                <small class="d-block">29 July 2020 - 02:26 PM</small>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="timeline-panel">
-                                            <div class="media me-2 media-danger">
-                                                KG
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="mb-1">Resport created successfully</h6>
-                                                <small class="d-block">29 July 2020 - 02:26 PM</small>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="timeline-panel">
-                                            <div class="media me-2 media-primary">
-                                                <i class="fa fa-home"></i>
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="mb-1">Reminder : Treatment Time!</h6>
-                                                <small class="d-block">29 July 2020 - 02:26 PM</small>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    @endforeach
+                                    <!-- End of comments -->
                                 </ul>
                             </div>
-                            <a class="all-notification" href="javascript:void(0)">See all notifications <i class="ti-arrow-right"></i></a>
+                            <a class="all-notification" href="javascript:void(0)"> عرض كل الاشعارات  <i class="ti-arrow-right"></i></a>
                         </div>
-                    </li> --}}
+
+                    </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     {{-- <li class="nav-item dropdown notification_dropdown">
                         <a class="nav-link bell bell-link" href="javascript:void(0)">
                             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -152,7 +145,12 @@
                     <li class="nav-item dropdown header-profile">
                         <a class="nav-link" href="javascript:void(0)" role="button" data-bs-toggle="dropdown">
                             <div class="header-info">
-                                <span class="text-black"><strong>{{ Auth::user()->name }}</strong></span>
+                                <span class="text-black"><strong>
+                                    @if (Auth::check())
+                                    {{ Auth::user()->name }}
+
+
+                                </strong></span>
                                 <p class="fs-12 mb-0">{{ Auth::user()->email }}</p>
                             </div>
 
@@ -162,6 +160,9 @@
                             <!-- توفير صورة افتراضية في حال عدم وجود صورة -->
                             <img src="{{ asset('admin/img/avatar.jpg') }}" alt="No img" class="avatar">
                         @endif
+
+                        @endif
+
                         </a>
                         <div class="dropdown-menu dropdown-menu-start">
                             <a  href="{{route('profile.edit')}}" class="dropdown-item ai-icon">

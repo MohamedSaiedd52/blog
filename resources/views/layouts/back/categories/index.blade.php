@@ -17,8 +17,9 @@
 @endsection
 
 
-
+@can('category-create')
 <button type="button" class="btn btn-success add-btn mt-4 mb-4 rounded" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1 " ></i> اضافه</button>
+@endcan
 
 
 
@@ -30,8 +31,11 @@
                                     <th >#</th>
 
                                     <th >اسم الفئة</th>
+                                    @can('category-edit,category-delete')
 
                                     <th >العمليات</th>
+                                    @endcan
+
                                 </tr>
                             </thead>
 
@@ -49,14 +53,18 @@
 
                                     <td>
                                         <div class="d-flex gap-2 ml-4">
+                                            @can('category-edit')
+
                                             <div class="edit mr-2">
                                                 <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#editshowModal{{ $cat->id }}">تعديل</button>
                                             </div>
+                                            @endcan
+                                            @can('category-delete')
 
                                                 <div class="remove">
                                                     <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal{{$cat->id}}">حذف</button>
                                                 </div>
-
+|@endcan
 
                                         </div>
                                     </td>

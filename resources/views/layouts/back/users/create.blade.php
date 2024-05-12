@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('css')
+<link rel="stylesheet" href="{{asset('assets/vendor/select2/css/select2.min.css')}}">
 
 
 
@@ -65,7 +66,7 @@
     <div class="card">
         <div class="card-body">
             <h1></h1>
-
+@include('layouts.back.message')
             <form action="{{route('Saveuser')}}" method="POST"  enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
@@ -225,11 +226,19 @@
                 </div>
             </div>
         </div>
+        <div class="mb-3">
 
+            <div class="form-group">
+                <strong>Role:</strong>
+                <select name="roles[]" class=" multi-select form-control"  multiple="multiple" id="tags">
+                    @foreach($roles as $roleName)
+                    <option value="{{ $roleName }}">{{ $roleName }}</option>
+                @endforeach
+                </select>
 
+            </div>
 
-
-
+        </div>
 
 
                    <div class="text-center mt-6">
@@ -254,6 +263,9 @@
         document.getElementById("img_file").value = '';
     }
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{asset('assets/vendor/select2/js/select2.full.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins-init/select2-init.js')}}"></script>
 
 @endsection
 

@@ -232,7 +232,7 @@
 
 
           <div class="sidebar-box">
-            <h3 class="heading"> المقالات المشهورة</h3>
+            <h3 class="heading"> احدث المقالات </h3>
             <div class="post-entry-sidebar">
 @foreach($posts as $post)
 

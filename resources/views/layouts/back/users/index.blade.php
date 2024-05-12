@@ -71,6 +71,9 @@
                                 <th> تأكيد البريد الالكتروني</th>
                                 <th> رقم الهاتف  </th>
                                 <th>الصلاحيات</th>
+
+                                <th>صلاحيات المستخدمين</th>
+
                                 <th>العمليات</th>
                             </tr>
                         </thead>
@@ -100,7 +103,13 @@
 
                                 <td>{{ $user->is_admin ? 'نعم' : 'لا' }}</td>
 
-
+                                <td>
+                                    @if(!empty($user->getRoleNames()))
+                                        @foreach($user->getRoleNames() as $v)
+                                            <span class="badge rounded-pill bg-dark">{{ $v }}</span>
+                                        @endforeach
+                                    @endif
+                                </td>
 
 
 
@@ -111,7 +120,12 @@
                                 <i class="fa fa-solid fa-eye"></i>
                             </button>
 
+                            @can('user-edit')
+
+
                                         <a href="{{route('Edituser',$user->id)}}"class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa fa-pencil"></i></a>
+                                        @endcan
+                                        @can('user-delete')
 
                                         <form class="deleteForm" action="{{ route('Deleteuser', $user->id) }}" method="POST" style="display: inline-block !important;">
                                             @csrf
@@ -119,6 +133,8 @@
 
                                             <button class="btn btn-danger shadow btn-xs sharp remove-item-btn" onclick="return confirmDelete();"><i class="fa fa-trash"></i></button>
                                         </form>
+
+                                        @endcan
                                     </div>
                                 </td>
 

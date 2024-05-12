@@ -21,3 +21,14 @@
     </ul>
 </div>
 @endif
+
+
+
+
+
+
+@if (session('status') == 'verification-link-sent')
+    <div class="alert alert-success mb-4" role="alert">
+        تم إرسال رابط تحقق جديد إلى عنوان البريد الإلكتروني الذي قدمته أثناء التسجيل
+    </div>
+@endif

@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('css')
+<link rel="stylesheet" href="{{asset('assets/vendor/select2/css/select2.min.css')}}">
 
 <style>
     /* Define RTL styles */
@@ -100,7 +101,21 @@
                 </div>
             </div>
         </div>
+        <div class="mb-3">
 
+            <div class="form-group">
+                <strong>Role:</strong>
+                <select name="roles[]" class="multi-select form-control"  multiple="multiple" >
+                    @foreach($roles as $roleName)
+
+                        <option value="{{ $roleName }}" >{{ $roleName  }}</option>
+                        @endforeach
+
+                </select>
+            </div>
+
+
+        </div>
 
                 <div class="text-center mt-4">
                     <button type="submit" class="btn btn-success rounded  btn-sm"  style="width: 200px !important;">حفظ</button>
@@ -120,6 +135,8 @@
         document.getElementById("img_file").value = '';
     }
 </script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{asset('assets/vendor/select2/js/select2.full.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins-init/select2-init.js')}}"></script>
 
 @endsection
